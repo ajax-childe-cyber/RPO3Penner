@@ -1,6 +1,69 @@
 #include <iostream>
 #include <Windows.h>
 
+/*
+
+тип_возврата Имя_Функции(аргументы_функции, ...)
+{
+
+	тело_функции
+
+}
+
+*/
+
+
+void PrintHello()
+{
+	std::cout << "Hello\n";
+	int a = 10;
+	std::cout << a;
+}
+
+void PrintNum(int a, double c)
+{
+	a += c;
+	std::cout << a + c << "\n";
+}
+
+int Sum(int a, int b)
+{
+	PrintNum(4, 5);
+	return a + b;
+}
+
+double Clojenie(double a, double b)
+{
+	return a + b;
+}
+double Vichitanie(double a, double b)
+{
+	return a - b;
+}
+double Umnojenie(double a, double b)
+{
+	return a * b;
+}
+double Delenie(double a, double b)
+{
+	return a / b;
+}
+void PrintArr(int name[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		std::cout << name[i];
+	}
+}
+void SetArr(int name[], int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+	 name[i] = rand() % 6;
+	}
+}
+
+
 
 int main()
 {
@@ -519,9 +582,51 @@ for (int i = 0; i < 5; i++)
 
 	}*/
 
+	//int b = 1;
 
+	//PrintNum(b, 100);
+	//std::cout << b << "\n";
 
+	//std::cout << Sum(1, 2);
+	char znak = ' ';
+	double a = 0, b = 0;
+	std::cout << "Введите оператор: ";
+	std::cin >> znak;
+	std::cout << "Введите первое число: ";
+	std::cin >> a;
+	std::cout << "Введите второе число: ";
+	std::cin >> b;
 
+	std::cout << "Ответ: ";
+	if (znak == '+' )
+	{
+		std::cout << Clojenie(a, b) << "\n";
+	}
+	else if (znak == '-')
+	{
+		std::cout << Vichitanie(a, b) << "\n";
+	}
+	else if (znak == '*')
+	{
+		std::cout << Umnojenie(a, b) << "\n";
+	}
+	else if (znak == '/')
+	{
+		if (b == 0)
+		{
+			std::cout << "На ноль делить незя";
+		}
+		else
+		{
+			std::cout << Delenie(a, b) << "\n";
+		}
+	}
+	else
+	{
+		std::cout << "Неверный знак";
+	}
+	const int size = 5;
+	int arr[size];
 
 
 	return 0;
