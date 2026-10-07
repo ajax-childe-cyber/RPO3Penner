@@ -62,7 +62,7 @@ void SetArr(int name[], int size)
 	 name[i] = rand() % 6;
 	}
 }*/
-double Clojenie(double a, double b);
+/*double Clojenie(double a, double b);
 int Clojenie(int a, int b)
 {
 	return a + b;
@@ -99,9 +99,7 @@ void FillArray(char arr[], int size)
 		std::cout << arr[i] << " ";
 	}
 	std::cout << "\n";
-}
-
-
+}*/
 /*template <class T1, class T2>
 T1 Substruck(T1 one, T2 two)
 {
@@ -109,8 +107,7 @@ T1 Substruck(T1 one, T2 two)
 	T1 asd;
 	return one - two;
 }*/
-
-int Fack(int num)
+/*int Fack(int num)
 {
 	if (num < 0)
 	{
@@ -131,7 +128,142 @@ int Umn(int num1, int num2)
 		return 0;
 	}
 	return num1 + Umn(num1, num2 - 1);
+}*/
+
+bool visokosny(int year)
+{
+	if (year % 400 == 0)
+		return true;
+
+	if (year % 100 == 0)
+		return false;
+
+	if (year % 4 == 0)
+		return true;
+
+	return false;
 }
+
+int daysInMonth(int month, int year)
+{
+	if (month == 2)
+	{
+		if (visokosny(year))
+			return 29;
+		else
+			return 28;
+	}
+
+	if (month == 4 || month == 6 || month == 9 || month == 11)
+		return 30;
+
+	return 31;
+}
+
+bool correctDate(int day, int month, int year)
+{
+	if (month < 1 || month > 12)
+		return false;
+
+	if (day < 1 || day > daysInMonth(month, year))
+		return false;
+
+	if (year < 1)
+		return false;
+
+	return true;
+}
+
+int daysStart(int day, int month, int year)
+{
+	int days = 0;
+
+	for (int i = 1; i < year; i++)
+	{
+		if (visokosny(i))
+			days += 366;
+		else
+			days += 365;
+	}
+
+	for (int i = 1; i < month; i++)
+	{
+		days += daysInMonth(i, year);
+	}
+
+	days += day;
+
+	return days;
+}
+
+int difference(int day1, int month1, int year1,
+	int day2, int month2, int year2)
+{
+	int date1 = daysStart(day1, month1, year1);
+	int date2 = daysStart(day2, month2, year2);
+
+	int result = date1 - date2;
+
+	if (result < 0)
+		result = -result;
+
+	return result;
+}
+double average(int arr[], int size)
+{
+	int sum = 0;
+
+	for (int i = 0; i < size; i++)
+	{
+		sum += arr[i];
+	}
+
+	return (double)sum / size;
+}
+
+void countElements(int arr[], int size,
+	int& positive,
+	int& negative,
+	int& zero)
+{
+	positive = 0;
+	negative = 0;
+	zero = 0;
+
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[i] > 0)
+			positive++;
+		else if (arr[i] < 0)
+			negative++;
+		else
+			zero++;
+	}
+}
+
+double fuelConsumption[2][3] = { {1, 4, 7}, {2, 4, 6} };
+
+
+int maxWeight[2][3] = { {750, 1500, 2000}, {1000, 2000, 3000} };
+
+
+int tankCapacity[2] = { 300, 1000 };
+
+
+double getConsumption(int plane, int cargoWeight)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		if (cargoWeight <= maxWeight[plane][i])
+		{
+			return fuelConsumption[plane][i];
+		}
+	}
+
+	return -1; 
+}
+
+
 
 int main()
 {
@@ -703,9 +835,7 @@ for (int i = 0; i < 5; i++)
 	std::cout << "\n";
 	std::cin >> num2;
 	std::cout << "\n";*/
-
-
-	std::cout << Umn(3,4) << "\n";
+	/*	std::cout << Umn(3,4) << "\n";
 	std::cout << Fack(5) << "\n";
 
 	//Clojenie(3 , 6);
@@ -718,8 +848,181 @@ for (int i = 0; i < 5; i++)
 	
 	FillArray(arr1, size);
 	FillArray(arr2, size);
-	FillArray(arr3, size);
+	FillArray(arr3, size);*/
 	
+int znak = 0;
+std::cout << "Выберете домашку, 1 - функции 1, другое - Хорошая практика программирования и массивов\n\n";
+std::cin >> znak;
+if (znak == 1)
+{
+	int day1 = 0, month1 = 0, year1 = 0;
+	int day2 = 0, month2 = 0, year2 = 0;
+
+	std::cout << "Введите первую дату: \nДень: ";
+	std::cin >> day1;
+	std::cout << "\nМесяц: ";
+	std::cin >> month1;
+	std::cout << "\nГод: ";
+	std::cin >> year1;
+
+	if (!correctDate(day1, month1, year1))
+	{
+		std::cout << "Ошибка: первая дата некорректна!" << "\n\n";
+		return 0;
+	}
+
+	std::cout << "Введите вторую дату: \nДень: ";
+	std::cin >> day2;
+	std::cout << "\nМесяц: ";
+	std::cin >> month2;
+	std::cout << "\nГод: ";
+	std::cin >> year2;
+
+	if (!correctDate(day2, month2, year2))
+	{
+		std::cout << "Ошибка: вторая дата некорректна!" << "\n\n";
+		return 0;
+	}
+
+	std::cout << "Разница: "
+		<< difference(day1, month1, year1,
+			day2, month2, year2)
+		<< " дней" << "\n\n";
+
+
+
+	int size = 0;
+
+	std::cout << "Введите количество элементов массива: ";
+	std::cin >> size;
+
+	if (size <= 0)
+	{
+		std::cout << "Ошибка: размер массива должен быть больше 0!" << "\n\n";
+		return 0;
+	}
+
+	int* arr = new int[size];
+
+	std::cout << "Введите элементы массива:" << "\n\n";
+
+	for (int i = 0; i < size; i++)
+	{
+		std::cin >> arr[i];
+	}
+
+	std::cout << "Среднее арифметическое: "
+		<< average(arr, size) << "\n\n";
+
+	int positive;
+	int negative;
+	int zero;
+
+	countElements(arr, size, positive, negative, zero);
+
+	std::cout << "Положительных элементов: "
+		<< positive << "\n";
+
+	std::cout << "Отрицательных элементов: "
+		<< negative << "\n";
+
+	std::cout << "Нулевых элементов: "
+		<< zero << "\n\n";
+}
+else
+{
+	int plane = 0;
+	double distanceAB = 0;
+	double distanceBC = 0;
+	int cargoWeight = 0;
+
+	std::cout << "Выберите самолёт 1 или 2: ";
+	std::cin >> plane;
+
+	if (plane < 1 || plane > 2)
+	{
+		std::cout << "Ошибка: такого самолёта нет!\n";
+		return 0;
+	}
+
+	std::cout << "Введите расстояние от А до В: ";
+	std::cin >> distanceAB;
+
+	std::cout << "Введите расстояние от В до С: ";
+	std::cin >> distanceBC;
+
+	std::cout << "Введите вес груза: ";
+	std::cin >> cargoWeight;
+
+	if (distanceAB < 0 || distanceBC < 0 || cargoWeight < 0)
+	{
+		std::cout << "Ошибка: введены отрицательные значения!\n";
+		return 0;
+	}
+
+	int index = plane - 1;
+
+	double consumption = getConsumption(index, cargoWeight);
+
+	if (consumption == -1)
+	{
+		std::cout << "Самолёт не может поднять такой груз!\n";
+		return 0;
+	}
+
+	double fuelAB = distanceAB * consumption;
+	double fuelBC = distanceBC * consumption;
+
+	double temporaryTank = 100;
+	double mainTank = tankCapacity[index];
+
+	double totalFuelAtA = temporaryTank + mainTank;
+
+	if (fuelAB > totalFuelAtA)
+	{
+		std::cout << "Невозможно долететь из А в В!\n";
+		return 0;
+	}
+
+	double fuelFromTemporary = temporaryTank;
+
+	if (fuelAB <= fuelFromTemporary)
+	{
+		fuelFromTemporary = fuelAB;
+		fuelAB = 0;
+	}
+	else
+	{
+		fuelAB -= fuelFromTemporary;
+		fuelFromTemporary = 0;
+	}
+
+	double remainingMainTank = mainTank - fuelAB;
+
+	if (fuelBC > tankCapacity[index])
+	{
+		std::cout << "Невозможно долететь из В в С даже с полным основным баком!\n";
+		return 0;
+	}
+
+	double refuel = fuelBC - remainingMainTank;
+
+	if (refuel < 0)
+	{
+		refuel = 0;
+	}
+
+	if (remainingMainTank + refuel > tankCapacity[index])
+	{
+		std::cout << "Невозможно выполнить маршрут!\n";
+		return 0;
+	}
+
+	std::cout << "\n--- Результат ---\n" << "Расход топлива: " << consumption << " л/км\n" << "Топливо на А -> В: " 
+	<< fuelAB + (temporaryTank - fuelFromTemporary) << " л\n" << "Топливо в основном баке в точке В: " << remainingMainTank << " л\n"
+	<< "Топливо на В -> С: " << fuelBC << " л\n" << "Минимально нужно заправить в В: " << refuel << " л\n";    
+}
+
 
 
 	return 0;
