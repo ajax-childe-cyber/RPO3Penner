@@ -62,12 +62,83 @@ void SetArr(int name[], int size)
 	 name[i] = rand() % 6;
 	}
 }*/
+double Clojenie(double a, double b);
+int Clojenie(int a, int b)
+{
+	return a + b;
+}
 
 
+void FillArray(int arr[], int size)
+{
+	
+	for (int i = 0; i < size; i++)
+	{
+		arr[i] = rand() % 10 + 1;
+		std::cout << arr[i] << " ";
+	}
+	std::cout << "\n";
+}
+void FillArray(double arr[], int size)
+{
+
+	for (int i = 0; i < size; i++)
+	{
+		arr[i] = (double)(rand() % 100 + 1);
+		arr[i] = arr[i] / 10;
+		std::cout << arr[i] << " ";
+	}
+	std::cout << "\n";
+}
+void FillArray(char arr[], int size)
+{
+	
+	for (int i = 0; i < size; i++)
+	{
+		arr[i] = (char)(rand() % 26 + 97);
+		std::cout << arr[i] << " ";
+	}
+	std::cout << "\n";
+}
+
+
+/*template <class T1, class T2>
+T1 Substruck(T1 one, T2 two)
+{
+	typeid;
+	T1 asd;
+	return one - two;
+}*/
+
+int Fack(int num)
+{
+	if (num < 0)
+	{
+		return 0;
+	}
+	if (num == 0)
+	{
+		return 1;
+	}
+	return num * Fack(num - 1);
+}
+
+int Umn(int num1, int num2)
+{
+	
+	if (num2 == 0)
+	{
+		return 0;
+	}
+	return num1 + Umn(num1, num2 - 1);
+}
 
 int main()
 {
 	
+	//Substruck(10, 3);
+	
+
 	SetConsoleCP(CP_UTF8);
 	SetConsoleOutputCP(CP_UTF8);
 	srand(time(NULL));
@@ -627,7 +698,27 @@ for (int i = 0; i < 5; i++)
 	}
 	const int size = 5;
 	int arr[size];*/
+	/*int num1 = 0, num2 = 0;
+	std::cin >> num1;
+	std::cout << "\n";
+	std::cin >> num2;
+	std::cout << "\n";*/
 
+
+	std::cout << Umn(3,4) << "\n";
+	std::cout << Fack(5) << "\n";
+
+	//Clojenie(3 , 6);
+
+	const int size = 4;
+
+	int arr1[size]{};
+	double arr2[size]{};
+	char arr3[size]{};
+	
+	FillArray(arr1, size);
+	FillArray(arr2, size);
+	FillArray(arr3, size);
 	
 
 
