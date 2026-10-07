@@ -13,7 +13,7 @@
 */
 
 
-void PrintHello()
+/*void PrintHello()
 {
 	std::cout << "Hello\n";
 	int a = 10;
@@ -61,7 +61,7 @@ void SetArr(int name[], int size)
 	{
 	 name[i] = rand() % 6;
 	}
-}
+}*/
 
 
 
@@ -581,14 +581,14 @@ for (int i = 0; i < 5; i++)
 		std::cout << "\n";
 
 	}*/
-
+    /*
 	//int b = 1;
 
 	//PrintNum(b, 100);
 	//std::cout << b << "\n";
 
-	//std::cout << Sum(1, 2);
-	char znak = ' ';
+	//std::cout << Sum(1, 2);*/
+	/*char znak = ' ';
 	double a = 0, b = 0;
 	std::cout << "Введите оператор: ";
 	std::cin >> znak;
@@ -626,7 +626,9 @@ for (int i = 0; i < 5; i++)
 		std::cout << "Неверный знак";
 	}
 	const int size = 5;
-	int arr[size];
+	int arr[size];*/
+
+	
 
 
 	return 0;
